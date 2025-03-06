@@ -14,7 +14,7 @@ class CustomDrawer extends StatelessWidget {
             SizedBox(height: 40,),
             _createDrawerItem(context, Icons.home, 'Inicio', '/'),
             Divider(),
-            _createDrawerItem(context, Icons.person, 'Género', GenreScreen.uri),
+            _createDrawerItem(context, Icons.person, 'Género', GenderScreen.uri),
             Divider(),
             _createDrawerItem(context, Icons.photo, 'Edad', AgeScreen.uri),
             Divider(),

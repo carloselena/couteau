@@ -11,9 +11,9 @@ final appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: GenreScreen.uri,
-      name: GenreScreen.name,
-      builder: (context, state) => const GenreScreen(),
+      path: GenderScreen.uri,
+      name: GenderScreen.name,
+      builder: (context, state) => const GenderScreen(),
     ),
     GoRoute(
       path: AgeScreen.uri,
