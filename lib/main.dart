@@ -1,5 +1,5 @@
+import 'package:couteau/config/router/app_router.dart';
 import 'package:couteau/config/theme/app_theme.dart';
-import 'package:couteau/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,10 +11,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),
-      home: HomeScreen(),
     );
   }
 }
