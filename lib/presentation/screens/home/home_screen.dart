@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
 
   static const String name = 'home_screen';
+  static const String uri = '/home_screen';
 
   const HomeScreen({super.key});
 

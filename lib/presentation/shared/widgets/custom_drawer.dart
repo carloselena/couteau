@@ -1,4 +1,6 @@
+import 'package:couteau/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -10,17 +12,21 @@ class CustomDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 40,),
-            _createDrawerItem(context, Icons.home, 'Portada', '/home'),
+            _createDrawerItem(context, Icons.home, 'Inicio', '/'),
             Divider(),
-            _createDrawerItem(context, Icons.person, 'Personajes', '/characters'),
+            _createDrawerItem(context, Icons.person, 'Género', GenreScreen.uri),
             Divider(),
-            _createDrawerItem(context, Icons.photo, 'Momentos', '/moments'),
+            _createDrawerItem(context, Icons.photo, 'Edad', AgeScreen.uri),
             Divider(),
-            _createDrawerItem(context, Icons.info, 'Acerca de', '/about'),
+            _createDrawerItem(context, Icons.info, 'Universidades', CountryUniversitiesScreen.uri),
             Divider(),
-            _createDrawerItem(context, Icons.person_2, 'En mi vida', '/personal'),
+            _createDrawerItem(context, Icons.person_2, 'Clima en RD', WeatherScreen.uri),
             Divider(),
-            _createDrawerItem(context, Icons.work, 'Contrátame', '/hireMe'),
+            _createDrawerItem(context, Icons.work, 'Pokémon', PokemonScreen.uri),
+            Divider(),
+            _createDrawerItem(context, Icons.work, 'Página de WordPress', WordPressScreen.uri),
+            Divider(),
+            _createDrawerItem(context, Icons.work, 'Acerca de', AboutMeScreen.uri),
           ],
         ),
       );
@@ -32,8 +38,8 @@ Widget _createDrawerItem(BuildContext context, IconData icon, String itemText, S
     leading: Icon(icon),
     title: Text(itemText),
     onTap: () {
+      context.push(route);
       Navigator.pop(context);
-      Navigator.pushNamed(context, route);
     }
   );
 }

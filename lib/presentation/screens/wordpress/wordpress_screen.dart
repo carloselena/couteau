@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class WordPressScreen extends StatelessWidget {
 
   static const String name = 'wordpress_screen';
+  static const String uri = '/wordpress_screen';
 
   const WordPressScreen({super.key});
 

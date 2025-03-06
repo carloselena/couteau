@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AgeScreen extends StatelessWidget {
 
   static const String name = 'age_screen';
+  static const String uri = '/age_screen';
 
   const AgeScreen({super.key});
 

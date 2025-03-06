@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class GenreScreen extends StatelessWidget {
 
   static const String name = 'genre_screen';
+  static const String uri = '/genre_screen';
 
   const GenreScreen({super.key});
 

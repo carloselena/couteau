@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class PokemonScreen extends StatelessWidget {
 
   static const String name = 'pokemon_screen';
+  static const String uri = '/pokemon_screen';
 
   const PokemonScreen({super.key});
 

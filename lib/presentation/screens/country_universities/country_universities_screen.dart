@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class CountryUniversitiesScreen extends StatelessWidget {
 
   static const String name = 'country_universities_screen';
+  static const String uri = '/country_universities_screen';
 
   const CountryUniversitiesScreen({super.key});
 

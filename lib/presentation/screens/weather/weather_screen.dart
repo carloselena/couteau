@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class WeatherScreen extends StatelessWidget {
 
   static const String name = 'weather_screen';
+  static const String uri = '/weather_screen';
 
   const WeatherScreen({super.key});
 
