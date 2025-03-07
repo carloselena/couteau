@@ -21,3 +21,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/toolbox.jpg
+    - assets/gender/gender_reveal_male.gif
+    - assets/gender/gender_reveal_female.gif
+    - assets/age/young_people.jpg
+    - assets/age/adult_people.jpg
+    - assets/age/elderly_people.jpg

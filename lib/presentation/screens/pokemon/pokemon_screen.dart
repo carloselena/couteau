@@ -1,3 +1,4 @@
+import 'package:couteau/presentation/screens/pokemon/pokemon_form.dart';
 import 'package:couteau/presentation/shared/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class PokemonScreen extends StatelessWidget {
         title: const Text('App Navaja Suiza'),
       ),
       drawer: CustomDrawer(),
-      body: Text('Pokemon Screen'),
+      body: PokemonForm(),
     );
   }
 }

@@ -18,10 +18,12 @@ class HomeScreen extends StatelessWidget {
       body: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 2,
-        child: Column(
-          children: [
-            Image.asset('assets/toolbox.jpg'),
-          ]
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset('assets/toolbox.jpg'),
+            ]
+          ),
         )
       )
     );
