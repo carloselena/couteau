@@ -10,6 +10,6 @@ class AgeModel {
 
   factory AgeModel.fromJsonMap(Map<String, dynamic> json) => AgeModel(
     name: json['name'],
-    age: json['age'],
+    age: json['age'] ?? 0,
   );
 }

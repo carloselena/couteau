@@ -13,7 +13,7 @@ class CountryUniversitiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Navaja Suiza'),
+        title: const Text('Universidades'),
       ),
       drawer: CustomDrawer(),
       body: CountryUniversitiesForm(),

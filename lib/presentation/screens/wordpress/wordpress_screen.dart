@@ -1,4 +1,4 @@
-import 'package:couteau/config/helpers/wordpress/get_wordpress_answer.dart';
+import 'package:couteau/config/helpers/wordpress_api/get_wordpress_answer.dart';
 import 'package:couteau/infrastructure/models/wordpress/news_model.dart';
 import 'package:couteau/presentation/shared/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
@@ -53,99 +53,57 @@ class WordPressScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            FutureBuilder<List<NewsModel>>(
-              future: GetWordPressAnswer().getAnswer(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  ); // Indicador de carga
-                } else if (snapshot.hasError) {
-                  return Center(child: Text("Error al cargar noticias"));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(child: Text("No hay noticias disponibles"));
-                }
-
-                List<NewsModel> newsList = snapshot.data!;
-
-                return ListView.builder(
-                  itemCount: newsList.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      margin: EdgeInsets.all(10),
-                      child: ListTile(
-                        title: Text(newsList[index].title),
-                        subtitle: Text(
-                          newsList[index].content.replaceAll(
-                            RegExp(r'<[^>]*>'),
-                            '',
-                          ), // Quita etiquetas HTML
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+            Expanded(
+              child: FutureBuilder<List<NewsModel>>(
+                future: GetWordPressAnswer().getAnswer(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(strokeWidth: 2,),
+                    ); // Indicador de carga
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text("Error al cargar noticias"));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(child: Text("No hay noticias disponibles"));
+                  }
+                      
+                  List<NewsModel> newsList = snapshot.data!;
+                      
+                  return ListView.builder(
+                    itemCount: newsList.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 2,
+                        margin: EdgeInsets.all(10),
+                        child: ListTile(
+                          title: Text(
+                            newsList[index].title,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: color.secondary
+                            )
+                            ),
+                          subtitle: Html(
+                            data: newsList[index].content,
+                            style: {
+                              "img": Style(
+                                width: Width(MediaQuery.of(context).size.width * 0.9),
+                                height: Height.auto(), // Mantener proporción
+                              ),
+                              "p": Style(
+                                fontSize: FontSize(16),
+                                textAlign: TextAlign.justify
+                              )
+                            }
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              },
+                      );
+                    },
+                  );
+                },
+              ),
             ),
-            // Card(
-            //               elevation: 2,
-            //               child: Padding(
-            //                 padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-            //                 child: Column(
-            //                   children: [
-            //                     Text(
-            //                       'Nombre:',
-            //                       style: TextStyle(
-            //                         fontSize: 22,
-            //                         fontWeight: FontWeight.w800,
-            //                         color: color.primary
-            //                       )
-            //                     ),
-
-            //                     Text(
-            //                       'Dominios:',
-            //                       style: TextStyle(
-            //                         fontSize: 20,
-            //                         fontWeight: FontWeight.w700,
-            //                         color: color.secondary
-            //                       )
-            //                     ),
-            //                     for (int i = 0; i < university.domains.length; i++) ...[
-            //                       Text(
-            //                         university.domains[i],
-            //                         style: TextStyle(
-            //                           fontSize: 18,
-            //                           fontWeight: FontWeight.w600,
-            //                           color: color.primary
-            //                         )
-            //                       ),
-            //                     ],
-
-            //                     Text(
-            //                       'Páginas Web:',
-            //                       style: TextStyle(
-            //                         fontSize: 20,
-            //                         fontWeight: FontWeight.w700,
-            //                         color: color.secondary
-            //                       )
-            //                     ),
-
-            //                     for (int i = 0; i < university.webPages.length; i++) ...[
-            //                       Text(
-            //                         university.domains[i],
-            //                         style: TextStyle(
-            //                           fontSize: 18,
-            //                           fontWeight: FontWeight.w600,
-            //                           color: color.primary
-            //                         )
-            //                       ),
-            //                     ],
-            //                   ],
-            //                 ),
-            //               )
-            //             )
           ],
         ),
       ),

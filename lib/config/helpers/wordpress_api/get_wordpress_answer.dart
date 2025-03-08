@@ -12,7 +12,7 @@ class GetWordPressAnswer {
 
     try {
       response = await _dio.get(
-        'https://hermandaddelased.org/wp-json/wp/v2/posts?per_page=3',
+        'https://hermandaddelased.org/wp-json/wp/v2/posts',
       );
       List<dynamic> news = response.data;
       newsModelList =
