@@ -30,6 +30,14 @@ class WeatherScreen extends StatelessWidget {
                 color: color.secondary,
               ),
             ),
+            Text(
+              '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: color.secondary,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Card(
@@ -58,11 +66,52 @@ class WeatherScreen extends StatelessWidget {
                   WeatherModel weather = snapshot.data!;
 
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(weather.temp.toString()),
-                  Text(weather.description),
-                  Text(weather.feelsLike.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Icon(Icons.sunny),
+                      Text('Temperatura: ${weather.temp.toString()} °C', style: TextStyle(fontSize: 20, color: color.tertiary)),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Icon(Icons.ac_unit),
+                      Text('Sensación: ${weather.feelsLike.toString()} °C', style: TextStyle(fontSize: 20, color: color.tertiary)),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Icon(Icons.water_drop),
+                      Text('Humedad: ${weather.humidity.toString()}%', style: TextStyle(fontSize: 20, color: color.tertiary)),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Icon(Icons.wind_power),
+                      Text('Viento: ${weather.wind.toString()} km/h', style: TextStyle(fontSize: 20, color: color.tertiary)),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Icon(Icons.description),
+                      Text('Descripción: ${weather.description.toUpperCase()}', style: TextStyle(fontSize: 20, color: color.tertiary)),
+                    ],
+                  ),
                   // Text(''),
                   // Text(''),
                   // Text(''),
