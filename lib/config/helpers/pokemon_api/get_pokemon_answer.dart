@@ -5,16 +5,18 @@ class GetPokemonAnswer {
   final String name;
   final _dio = Dio();
 
-  GetPokemonAnswer({
-    required this.name
-  });
+  GetPokemonAnswer({required this.name});
 
-  Future<PokemonModel> getAnswer() async {
-    
-    final response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$name');
+  Future<dynamic> getAnswer() async {
+    final Response<dynamic> response;
+    final PokemonModel pokemonModel;
 
-    final pokemonModel = PokemonModel.fromJsonMap(response.data);
-
-    return pokemonModel;
+    try {
+      response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$name');
+      pokemonModel = PokemonModel.fromJsonMap(response.data);
+      return pokemonModel;
+    } on DioException {
+      return;
+    }
   }
 }

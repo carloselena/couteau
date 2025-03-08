@@ -3,11 +3,7 @@ import 'package:couteau/infrastructure/models/pokemon/pokemon_model.dart';
 import 'package:flutter/material.dart';
 
 class PokemonForm extends StatefulWidget {
-
-  const PokemonForm({
-    super.key,
-  });
-  
+  const PokemonForm({super.key});
 
   @override
   State<PokemonForm> createState() => _PokemonFormState();
@@ -40,7 +36,6 @@ class _PokemonFormState extends State<PokemonForm> {
 
   @override
   Widget build(BuildContext context) {
-
     final color = Theme.of(context).colorScheme;
 
     return Form(
@@ -49,7 +44,9 @@ class _PokemonFormState extends State<PokemonForm> {
         padding: const EdgeInsets.all(16.0),
         child: Card(
           elevation: 3,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
@@ -59,13 +56,23 @@ class _PokemonFormState extends State<PokemonForm> {
                 children: [
                   Text(
                     'Indique el nombre de un Pokémon',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: color.secondary)
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: color.secondary,
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 32,
+                    ),
                     child: TextFormField(
                       controller: _textController,
-                      decoration: InputDecoration(hintText: 'Nombre del Pokémon', border: OutlineInputBorder()),
+                      decoration: InputDecoration(
+                        hintText: 'Nombre del Pokémon',
+                        border: OutlineInputBorder(),
+                      ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, ingrese el nombre del pokémon.';
@@ -75,36 +82,92 @@ class _PokemonFormState extends State<PokemonForm> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 32,
+                    ),
                     child: ElevatedButton(
                       onPressed: _processText,
-                      child: isLoading ? CircularProgressIndicator(color: color.primary, strokeWidth: 2,) : Text('Enviar'),
+                      child:
+                          isLoading
+                              ? CircularProgressIndicator(
+                                color: color.primary,
+                                strokeWidth: 2,
+                              )
+                              : Text('Enviar'),
                     ),
                   ),
                   if (validator.isNotEmpty) ...[
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Card(
-                        clipBehavior: Clip.hardEdge,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          children: [
-                            Text(pokemon!.name.toUpperCase()),
-                            Image.network(
-                              pokemon!.imageUrl,
-                              width: 480,
-                              height: 200,
-                              fit: BoxFit.cover,
+                      child: Column(
+                        children: [
+                          if (pokemon != null) ...[
+                            Card(
+                              clipBehavior: Clip.hardEdge,
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    pokemon!.name.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w800,
+                                      color: color.primary,
+                                    ),
+                                  ),
+                                  Image.network(
+                                    pokemon!.imageUrl,
+                                    width: 480,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Text(
+                                    'Experiencia base: ${pokemon!.baseExperience}',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                      color: color.tertiary,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    'Habilidades:',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                      color: color.secondary,
+                                    ),
+                                  ),
+                                  Text(
+                                    pokemon!.abilities.join(', '),
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                      color: color.primary,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text('Experiencia base: ${pokemon!.baseExperience}'),
-                            Text('Habilidades: ${pokemon!.abilities.join(', ')}'),
+                          ] else ...[
+                            Text(
+                              'No existe pokémon con ese nombre. Intente nuevamente.',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: color.secondary,
+                              ),
+                            ),
                           ],
-                        ),
-                      )
-                    )
-                  ]
+                        ],
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
